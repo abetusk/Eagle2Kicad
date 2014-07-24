@@ -152,7 +152,7 @@ class Board(object):
             signame = signal
             num = self.signals.get(signame)
             outFile.write('$EQUIPOT\n')
-            outFile.write('Na ' + num + ' ' + signame + '\n')
+            outFile.write('Na ' + num + ' "' + signame + '"\n')
             outFile.write('St~\n')
             outFile.write('$EndEQUIPOT\n')
 

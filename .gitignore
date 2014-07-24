@@ -20,3 +20,6 @@ Questions.txt
 *test.py
 *.pyc
 *__pycache__*
+
+#Vim litter
+*~
