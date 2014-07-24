@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+#
+
 import sys
 
 import traceback
@@ -14,9 +17,7 @@ from tkinter.messagebox import showinfo, showerror
 from xml.etree.ElementTree import ElementTree
 from xml.etree.ElementTree import XMLParser
 
-
 logFile = open("Log.txt", "a")
-
 
 def startGui():
     root = Tk()
