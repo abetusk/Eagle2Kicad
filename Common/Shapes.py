@@ -481,8 +481,7 @@ class Text(object):
             myString += 'Te "' + self.val + '"\n'
             myString += 'Po ' + X + ' ' + Y + ' ' + self.size + ' ' + self.size + ' ' + self.width + ' ' + self.rot + \
                         '\n'
-            #myString += 'De ' + self.layer + ' ' + self.mirror + ' 0000 ' + self.style + ' ' + hjustify + '\n'
-            myString += 'De ' + self.layer + ' ' + self.mirror + ' 0000 ' + self.style + '\n'
+            myString += 'De ' + self.layer + ' ' + self.mirror + ' 0000 ' + self.style + ' ' + hjustify + '\n'
             myString += '$EndTEXTPCB\n'
         except TypeError:
             return '\n'
