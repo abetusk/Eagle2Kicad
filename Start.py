@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 
 import traceback
@@ -6,19 +8,22 @@ import os.path
 from argparse import ArgumentParser
 from Board.Board import Board
 from Library.Library import Library
-#from Schematic.Schematic import Schematic
-from tkinter import Tk, Frame, Label, Button, RIDGE, BOTH, X
-from tkinter.filedialog import askopenfilename
-from tkinter.filedialog import asksaveasfilename
-from tkinter.messagebox import showinfo, showerror
-from xml.etree.ElementTree import ElementTree
-from xml.etree.ElementTree import XMLParser
 
 
 logFile = open("Log.txt", "a")
 
 
 def startGui():
+
+    #from Schematic.Schematic import Schematic
+    from tkinter import Tk, Frame, Label, Button, RIDGE, BOTH, X
+    from tkinter.filedialog import askopenfilename
+    from tkinter.filedialog import asksaveasfilename
+    from tkinter.messagebox import showinfo, showerror
+    from xml.etree.ElementTree import ElementTree
+    from xml.etree.ElementTree import XMLParser
+
+
     root = Tk()
     root.wm_title("Eagle V6 to KiCad Converter")
     root.wm_minsize(400, 200)
