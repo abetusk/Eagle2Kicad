@@ -9,9 +9,10 @@ from argparse import ArgumentParser
 from Board.Board import Board
 from Library.Library import Library
 
+from xml.etree.ElementTree import ElementTree
+from xml.etree.ElementTree import XMLParser
 
 logFile = open("Log.txt", "a")
-
 
 def startGui():
 
@@ -20,8 +21,6 @@ def startGui():
     from tkinter.filedialog import askopenfilename
     from tkinter.filedialog import asksaveasfilename
     from tkinter.messagebox import showinfo, showerror
-    from xml.etree.ElementTree import ElementTree
-    from xml.etree.ElementTree import XMLParser
 
 
     root = Tk()
