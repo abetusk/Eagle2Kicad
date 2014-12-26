@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-#
-
 import sys
 
 import traceback
@@ -17,7 +14,9 @@ from tkinter.messagebox import showinfo, showerror
 from xml.etree.ElementTree import ElementTree
 from xml.etree.ElementTree import XMLParser
 
+
 logFile = open("Log.txt", "a")
+
 
 def startGui():
     root = Tk()
@@ -148,7 +147,7 @@ def convertLib(fileName, symFileName, modFileName):
         logFile.write(traceback.format_exc())
         logFile.write("*******************************************\n\n\n")
 
-        return False, "Error Converting Library: '" + name + "'\n" + str(e) + "\nSee Log.txt for more info"
+        return False, "Error Converting Library: '" + name + "'\nError: " + str(e) + "\nSee Log.txt for more info"
 
     logFile.write("Conversion Successfull\n")
     logFile.write("*******************************************\n\n\n")
