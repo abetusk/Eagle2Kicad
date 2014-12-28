@@ -5,6 +5,9 @@ Created on Apr 5, 2012
 '''
 from Common.Shapes import *
 
+def xstr(s):
+    return '' if s is None else str(s)
+
 
 class DevicePart(object):
     def __init__(self, device, symbolsDict, gates, converter):
@@ -36,14 +39,18 @@ class DevicePart(object):
         else:
             token = ""
 
-        symFile.write("#Generated for " + self.device.fullName + " package " + self.device.package + "\n")
+        #if self.device.package is None:
+        #  print( "!!!", self.device.package, self.device.fullName, self.name )
+        #symFile.write("#Generated for " + self.device.fullName + " package " + xstr(self.device.package) + "\n")
+
+        symFile.write("#Generated for " + xstr(self.device.fullName) + " package " + xstr(self.device.package) + "\n")
         symFile.write("DEF " + self.name + " U 0 100 Y Y " + ( "%d" % self.units) \
                       + " 0 " + self.isPower + "\n")
         #TODO give actual names to fields in syms
         symFile.write("F0 \"" + token + "U\" 0 0 0 H I C CNN\n")
         symFile.write("F1 \"" + self.name + "\" 0 0 0 H I C CNN \n")
         symFile.write("$FPLIST\n")
-        symFile.write(" " + self.device.package + "\n")
+        symFile.write(" " + xstr(self.device.package) + "\n")
         symFile.write("$ENDFPLIST\n")
         symFile.write("DRAW\n")
 
@@ -56,8 +63,8 @@ class DevicePart(object):
 
 class Symbol(object):
     __slots__ = ("name", "isPower", "polygons", "wires", "texts", "pins", "circles", "rectangles", "package", "device")
-    #TODO multigate Parts each shape has a unit associated with it... 
-    #this coresponds to the swap level in the deviceset. 
+    #TODO multigate Parts each shape has a unit associated with it...
+    #this coresponds to the swap level in the deviceset.
     def __init__(self, node, converter, device=None, offset=None):
         self.polygons = []
         self.wires = []
@@ -221,4 +228,4 @@ class Pin(object):
         myString += self.direction + " " + self.shape + "\n"
         return myString
 
-        
+
