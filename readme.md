@@ -20,7 +20,7 @@ Features so far:
 
 GUI:
 ----
-      
+
 To Convert a file run Start.py located in the root of the download zip file
 
 1. A gui will pop up asking what to do.
@@ -35,7 +35,7 @@ CMD Line:
 
 Alternatively you may use the command line options.
 
-    usage: start.py [-h] [-l inFile symFile modFile] [-b inFile brdFile]
+    usage: eagle2kicad [-h] [-l inFile symFile modFile] [-b inFile brdFile]
                 [-s inFile schFile]
 
     optional arguments:
@@ -59,7 +59,7 @@ Contributors:
 - Myval
 - yoneken
 - If I have forgotten someone please send me an email and I'll add to this list
-    
+
 #<font color="red">!!!NOTICE:!!!</font>
 ----------
 All boards converted using this script should be checked over to make sure everything looks good.
