@@ -44,6 +44,10 @@ class Line(object):
             eAngle = 0
         else:
             cX, cY, curve, radius, sAngle, eAngle = self.getWireArcInfo(wire, converter, noTranspose)
+
+            # module arc curves have an angle specified in clockwise angle
+            # even though the start angle is counter clockwise
+            #
             curve = -curve
 
         if offset is not None:
