@@ -4,7 +4,7 @@ Created on Apr 3, 2012
 @author: Dan
 """
 
-from math import sin, sqrt, atan2, copysign, radians, fabs, degrees
+from math import cos, sin, sqrt, atan2, copysign, radians, fabs, degrees
 from Common.LayerIds import getLayerId, makeViaMask
 
 
@@ -44,6 +44,7 @@ class Line(object):
             eAngle = 0
         else:
             cX, cY, curve, radius, sAngle, eAngle = self.getWireArcInfo(wire, converter, noTranspose)
+            curve = -curve
 
         if offset is not None:
             dX, dY = converter.convertCoordinate(offset[0], offset[1], noTranspose)
@@ -97,6 +98,7 @@ class Line(object):
         """
 
         curve = float(arc.get('curve'))
+
         x1, y1 = float(arc.get('x1')), float(arc.get('y1'))
         x2, y2 = float(arc.get('x2')), float(arc.get('y2'))
 
@@ -116,13 +118,15 @@ class Line(object):
         cY = mY + h * (x2 - x1) / l * sign #my +- h*sin(theta)
 
         sAngle = round(degrees(atan2(y1 - cY, x1 - cX)))
-        eAngle = round(sAngle + curve + copysign(180, curve) if fabs(curve) > 180 else 0)
+        eAngle = round( sAngle + curve )
 
         cX, cY = converter.convertCoordinate(cX, cY, noTranspose, noInvert)
+
         curve = int(curve * 10)
         r = converter.convertUnit(r)
         sAngle *= 10
         eAngle *= 10
+
         return cX, cY, curve, r, sAngle, eAngle
 
     def moduleRep(self):
