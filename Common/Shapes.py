@@ -6,6 +6,7 @@ Created on Apr 3, 2012
 
 from math import cos, sin, sqrt, atan2, copysign, radians, fabs, degrees
 from Common.LayerIds import getLayerId, makeViaMask
+import re
 
 
 class Line(object):
@@ -45,10 +46,34 @@ class Line(object):
         else:
             cX, cY, curve, radius, sAngle, eAngle = self.getWireArcInfo(wire, converter, noTranspose)
 
+            print("before c", cX,cY, "curve", curve, "r", radius, "s,eAngle", sAngle, eAngle, "xy12", x1, y1, x2, y2 )
+
+            # sAngle and eAngle are only used in EESchema libraries.
+            # Newer versions of KiCAD use x1, y1, x2, y2 as the "truth"
+            # about where to render the start and end points of teh arc.
+            # sAngle and eAngle are used, but ONLY to swap (x1,y1) with
+            # (x2,y2) under the following conditions:
+            #   - normalize sAngle and eAngle by adding 3600 if they're less than 0
+            #   - if eAngle > sAngle, add 3600 to eAngle
+            #   - if (eAngle-sAngle) > 180 then SWAP
+            #
+            # Since the sAngle and eAngle values are ignored and it's only their relative
+            # value that's of relevance, stuff dummy values here in order to make
+            # sure the arc gets rendered properly.
+            #
+            if curve < 0:
+              sAngle = 5
+              eAngle = 2
+            else:
+              eAngle = 5
+              sAngle = 2
+
+
             # module arc curves have an angle specified in clockwise angle
             # even though the start angle is counter clockwise
             #
             curve = -curve
+
 
         if offset is not None:
             dX, dY = converter.convertCoordinate(offset[0], offset[1], noTranspose)
@@ -392,7 +417,9 @@ class Text(object):
 
     def __init__(self, node, converter, noTranspose=False, offset=None):
 
-        self.val = node.text
+        #self.val = node.text
+        self.val = re.sub( '"', '\\"', node.text )
+        self.val = re.sub( r"\n", '\\\\n', self.val )
         self.style = 'Normal'
         layer = getLayerId(node.get('layer'))
         x, y = converter.convertCoordinate(node.get('x'), node.get('y'), noTranspose)
