@@ -46,8 +46,6 @@ class Line(object):
         else:
             cX, cY, curve, radius, sAngle, eAngle = self.getWireArcInfo(wire, converter, noTranspose)
 
-            print("before c", cX,cY, "curve", curve, "r", radius, "s,eAngle", sAngle, eAngle, "xy12", x1, y1, x2, y2 )
-
             # sAngle and eAngle are only used in EESchema libraries.
             # Newer versions of KiCAD use x1, y1, x2, y2 as the "truth"
             # about where to render the start and end points of teh arc.
