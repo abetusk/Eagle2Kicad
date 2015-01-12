@@ -48,7 +48,7 @@ class Line(object):
 
             # sAngle and eAngle are only used in EESchema libraries.
             # Newer versions of KiCAD use x1, y1, x2, y2 as the "truth"
-            # about where to render the start and end points of teh arc.
+            # about where to render the start and end points of the arc.
             # sAngle and eAngle are used, but ONLY to swap (x1,y1) with
             # (x2,y2) under the following conditions:
             #   - normalize sAngle and eAngle by adding 3600 if they're less than 0
